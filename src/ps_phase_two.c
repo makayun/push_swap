@@ -26,7 +26,7 @@ int ps_find_smallest2(t_data *data)
 	smallest = 0;
 	while (i <= data->last_b)
 	{
-		data->weights[i] += ((data->size - data->b[i])) + (abs(data->b[i] - data->a[0]) / 2); // write your own abs()
+		data->weights[i] += ((data->size - data->b[i])) + (abs(data->b[i] - data->a[0])); // write your own abs()
 		if (data->weights[smallest] > data->weights[i]) // if weights are equal - choose the closest to the edge
 			smallest = i;
 		++i;

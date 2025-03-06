@@ -15,8 +15,8 @@ LOW=0
 HIGH=1000
 
 # Set how many unique random numbers to generate:
-NUM_COUNT=100
-PROG_NAME="./swap_push"
+NUM_COUNT=500
+PROG_NAME="./push_swap"
 
 
 # working vars, do not change
@@ -25,7 +25,7 @@ MAX=0
 #######################
 # 2) Validate NUM_COUNT vs. [LOW..HIGH]
 #######################
-make exec_only
+make
 RANGE_SIZE=$((HIGH - LOW + 1))
 if [ "$NUM_COUNT" -gt "$RANGE_SIZE" ]; then
   echo "Error: Cannot generate $NUM_COUNT unique numbers in the range [$LOW..$HIGH]."
@@ -91,7 +91,7 @@ while [ "$ITER" -gt 0 ]; do
     # Record stats
     results+=("$NUM_OPS")
     ((SUM += NUM_OPS))
-    
+
     if [ "$NUM_OPS" -lt "$MIN" ]; then
         MIN=$NUM_OPS
     fi

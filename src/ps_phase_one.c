@@ -33,12 +33,13 @@ int ps_find_smallest(t_data *data)
 {
 	int i;
 	int smallest;
+	int avg = ps_average(data->a, data->last_a + 1);
 
 	i = 0;
 	smallest = 0;
 	while (i <= data->last_a)
 	{
-		data->weights[i] += data->a[i] * 2;
+		data->weights[i] += data->a[i] + abs(avg - data->a[i]);
 		if (data->weights[smallest] > data->weights[i])
 			smallest = i;
 		++i;

@@ -6,7 +6,7 @@ void	ps_exit(t_data *data, char *message, int code)
 	free (data->b);
 	free (data->weights);
 	if (message && *message)
-		ft_printf ("%s\n", message);
+		ft_putstr_fd(message, STDERR_FILENO);
 	exit (code);
 }
 
