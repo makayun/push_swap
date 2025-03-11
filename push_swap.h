@@ -6,52 +6,40 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:37:20 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/03/09 08:01:35 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 18:53:07 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <stdbool.h>
-#include <string.h>
+# include <stdio.h>
+# include <math.h>
+# include <stdlib.h>
+# include <limits.h>
+# include <stdbool.h>
+# include <string.h>
 
-enum e_command {
-	EPA,
-	EPB,
-	ESA,
-	ESB,
-	ESS,
-	ERA,
-	ERB,
-	ERR,
-	ERRA,
-	ERRB,
-	ERRR,
+enum e_command
+{
+	PA,
+	PB,
+	SA,
+	SB,
+	SS,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR,
 	COMMANDS_MAX
 };
 
-enum e_operation {
-	PA	= 0x01,
-	PB	= 0x02,
-	RA	= 0x04,
-	RB	= 0x08,
-	RRA	= 0x10,
-	RRB	= 0x20,
-	SA	= 0x40,
-	SB	= 0x80,
-	RR	= RA | RB,
-	RRR	= RRA | RRB,
-	SS	= SA | SB
-};
-
-typedef struct	s_data {
+typedef struct s_data
+{
 	int			*pool;
-	const int	pool_size;
+	int			pool_size;
 	int			b_size;
 }				t_data;
 
@@ -73,7 +61,9 @@ void	ps_exec(t_data *data, unsigned char code);
 
 void	ps_switch(int *a, int *b);
 bool	ps_is_sorted(const int *arr, const int size);
+int		ps_average(const int *arr, const int size);
 
-void	ps_phase_one(t_data *data);
+void	ps_phase_one(t_data *data, int *pool, int *b_size, const int pool_size);
+void	ps_phase_two(t_data *data, int *pool, int *b_size, const int pool_size);
 
 #endif

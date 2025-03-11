@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:43:22 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/03/09 08:01:53 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:51:41 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ void	ps_exit(t_data *data, const char *msg, const int code)
 
 int	main(int argc, char **argv)
 {
-	t_data	data = {.pool_size = argc - 1};
+	t_data	data;
 
 	if (argc <= 1)
 		ps_exit(&data, "Not enough arguments!", 42);
+	data.pool_size = argc - 1;
 	ps_init(&data, argv + 1);
-	ps_phase_one(&data);
+	ps_phase_one(&data, data.pool, &data.b_size, data.pool_size);
+	ps_phase_two(&data, data.pool, &data.b_size, data.pool_size);
+	return (0);
 }

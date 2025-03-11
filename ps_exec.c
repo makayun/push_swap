@@ -6,14 +6,13 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 00:47:31 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/03/09 01:19:45 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:51:17 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void f_init(void (*f[256])(t_data *data))
+void	f_init(void (*f[COMMANDS_MAX])(t_data *data))
 {
 	f[PA] = ps_pa;
 	f[PB] = ps_pb;
@@ -28,13 +27,17 @@ void f_init(void (*f[256])(t_data *data))
 	f[RRR] = ps_rrr;
 }
 
-void ps_exec(t_data *data, unsigned char code)
+void	ps_exec(t_data *data, unsigned char code)
 {
-	static void (*f[256])(t_data *data) = { NULL };
+	static void	(*f[COMMANDS_MAX])(t_data *data) = {NULL};
+	static char	to_print[COMMANDS_MAX][4] = {"pa", "pb", "sa", "sb", "ss",
+		"ra", "rb", "rr", "rra", "rrb", "rrr"};
 
-	if (!f[PA])
+	if (!f[0])
 		f_init(f);
-
-	if (f[code])
+	if (code < COMMANDS_MAX && f[code])
+	{
 		f[code](data);
+		printf("%s\n", to_print[code]);
+	}
 }

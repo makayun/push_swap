@@ -1,6 +1,6 @@
 NAME := push_swap
 
-CC := @gcc
+CC := @cc
 CFLAGS := -Werror -Wall -Wextra -g
 RM := @rm -rf
 

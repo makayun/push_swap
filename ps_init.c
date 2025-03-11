@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:17:06 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/03/09 01:25:10 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 19:13:31 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	ps_is_number(const char *str)
 bool	ps_has_duplicates(const int *arr, const int size)
 {
 	int	i;
-	int j;
+	int	j;
 
 	if (!arr)
 		return (false);

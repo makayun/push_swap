@@ -6,16 +6,16 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 04:32:25 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/03/09 14:15:53 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 19:19:28 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ps_average(int *arr, int size)
+int	ps_average(const int *arr, const int size)
 {
-	int i;
-	int average;
+	int	i;
+	int	average;
 
 	i = 0;
 	average = 0;
@@ -27,9 +27,9 @@ int ps_average(int *arr, int size)
 	return (average / size);
 }
 
-int ps_weight_one(const int size, const int i)
+long	ps_count_steps_one(const long size, const long i)
 {
-	const int	mid = size / 2;
+	const long	mid = (long)size / 2;
 
 	if (i <= mid)
 		return (i * mid / 3);
@@ -37,61 +37,52 @@ int ps_weight_one(const int size, const int i)
 		return ((size - i) * mid / 3);
 }
 
-int ps_find_smallest(t_data *data)
+int	ps_find_smallest(const int *pool, const int b_size, const int pool_size)
 {
 	int			i;
-	int			smallest;
 	int			index;
-	int			current;
-	const int	avg = ps_average(&data->pool[data->b_size], data->pool_size - data->b_size);
+	long		smallest;
+	long		current;
+	const int	avg = ps_average(&pool[b_size], pool_size - b_size);
 
-	i = data->b_size;
-	smallest = INT_MAX;
+	i = b_size;
+	smallest = LONG_MAX;
 	index = 0;
-	while (i < data->pool_size)
+	while (i < pool_size)
 	{
-		current = ps_weight_one(data->pool_size - data->b_size, i - data->b_size) + data->pool[i] + abs(avg - data->pool[i]);
+		current = ps_count_steps_one(pool_size - b_size, i - b_size);
+		current += pool[i] + abs(avg - pool[i]);
 		if (smallest > current)
 		{
 			smallest = current;
-			index = i - data->b_size;
+			index = i - b_size;
 		}
 		++i;
 	}
 	return (index);
 }
 
-void	ps_phase_one(t_data *data)
+void	ps_phase_one(t_data *data, int *pool, int *b_size, const int pool_size)
 {
-	int				smallest_weight;
-	unsigned char	code;
+	int	smallest_weight;
 
-	code = 0;
-	while (!ps_is_sorted(&data->pool[data->b_size], data->pool_size - data->b_size))
+	while (!ps_is_sorted(&pool[*b_size], pool_size - *b_size))
 	{
-		smallest_weight = ps_find_smallest(data);
+		smallest_weight = ps_find_smallest(pool, *b_size, pool_size);
 		if (smallest_weight == 0)
 		{
-			while (data->b_size > 1 && data->pool[data->b_size - 1] < ps_average(data->pool, data->b_size))
+			while (*b_size > 1 && pool[*b_size - 1] < ps_average(pool, *b_size))
 				ps_exec(data, RB);
 			ps_exec(data, PB);
 		}
-		else
+		else if (smallest_weight <= (pool_size - *b_size) / 2)
 		{
-			code |= RA * (smallest_weight <= (data->pool_size - data->b_size) / 2);
-			code |= RB * (data->b_size > 1 && data->pool[data->b_size - 1] < ps_average(data->pool, data->b_size));
-			code |= RRA * !(code & RA) * !(code & RB);
-			ps_exec(data, code);
+			if (*b_size > 1 && pool[*b_size - 1] < ps_average(pool, *b_size))
+				ps_exec(data, RR);
+			else
+				ps_exec(data, RA);
 		}
-		// else if (smallest_weight <= (data->pool_size - data->b_size) / 2)
-		// {
-		// 	if (data->b_size > 1 && data->pool[data->b_size - 1] < ps_average(data->pool, data->b_size))
-		// 		ps_exec(data, RR);
-		// 	else
-		// 		ps_exec(data, RA);
-		// }
-		// else
-		// 	ps_exec(data, RRA);
+		else
+			ps_exec(data, RRA);
 	}
 }
-
