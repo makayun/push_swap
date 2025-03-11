@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 13:31:12 by mmakagon          #+#    #+#             */
-/*   Updated: 2023/03/10 00:15:53 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 20:17:34 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen( char *str)
 {
 	int	a;
 

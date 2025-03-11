@@ -1,7 +1,7 @@
 NAME := push_swap
 
-CC := @cc
-CFLAGS := -Werror -Wall -Wextra -g
+CC := @clang
+CFLAGS := -Werror -Wall -Wextra -g -fsanitize=address
 RM := @rm -rf
 
 FILES := ps_exec \

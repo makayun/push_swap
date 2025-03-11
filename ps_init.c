@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:17:06 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/03/11 19:13:31 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 20:30:42 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,38 @@ bool	ps_has_duplicates(const int *arr, const int size)
 	return (false);
 }
 
+void	ps_number_array(t_data *data)
+{
+	int	i;
+	int	j;
+	int	count;
+	int	repeat;
+	int *ranks;
+
+	ranks = (int *)malloc(data->pool_size * sizeof(int));
+	if (!ranks)
+		ps_exit(data, "Not enough memory", 42);
+	i = 0;
+	while (i < data->pool_size)
+	{
+		j = 0;
+		repeat = 0;
+		count = 1;
+		while (j < data->pool_size)
+		{
+			if (data->pool[j] < data->pool[i])
+				count++;
+			j++;
+		}
+		ranks[i] = count;
+		i++;
+	}
+	i = -1;
+	while (++i < data->pool_size)
+		data->pool[i] = ranks[i];
+	free(ranks);
+}
+
 void	ps_init(t_data *data, char **numbers)
 {
 	int		i;
@@ -68,6 +100,7 @@ void	ps_init(t_data *data, char **numbers)
 	data->pool = (int *)malloc(data->pool_size * sizeof(int));
 	if (!data->pool)
 		ps_exit(data, "Not enough memory!", 42);
+	data->b_size = 0;
 	i = 0;
 	while (i < data->pool_size && numbers[i])
 	{
@@ -81,4 +114,5 @@ void	ps_init(t_data *data, char **numbers)
 	}
 	if (ps_has_duplicates(data->pool, data->pool_size))
 		ps_exit(data, "There are duplicates in the array!", 42);
+	ps_number_array(data);
 }

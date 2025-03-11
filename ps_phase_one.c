@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 04:32:25 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/03/11 19:30:43 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 20:33:56 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ps_find_smallest(const int *pool, const int b_size, const int pool_size)
 	while (i < pool_size)
 	{
 		current = ps_count_steps_one(pool_size - b_size, i - b_size);
-		current += pool[i] + abs(avg - pool[i]);
+		current += pool[i] + (pool[i] * (pool_size < 10)) + abs(avg - pool[i]);
 		if (smallest > current)
 		{
 			smallest = current;
@@ -66,7 +66,7 @@ void	ps_phase_one(t_data *data, int *pool, int *b_size, const int pool_size)
 {
 	int	smallest_weight;
 
-	while (!ps_is_sorted(&pool[*b_size], pool_size - *b_size))
+	while (!ps_is_sorted(pool + *b_size, pool_size - *b_size))
 	{
 		smallest_weight = ps_find_smallest(pool, *b_size, pool_size);
 		if (smallest_weight == 0)

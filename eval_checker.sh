@@ -4,7 +4,7 @@
 # 1) Variable initialization
 #######################
 SUM=0
-ITER=10       # Number of iterations
+ITER=100      # Number of iterations
 AVG=0
 ITER_ORIG=$ITER
 declare -a results
@@ -12,7 +12,7 @@ declare -a results
 PROG_NAME="./swap_push"
 
 LOW=0
-HIGH=10000
+HIGH=100000
 
 # Set how many unique random numbers to generate:
 NUM_COUNT=500

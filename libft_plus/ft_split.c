@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:08:57 by mmakagon          #+#    #+#             */
-/*   Updated: 2023/09/29 21:23:26 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 20:17:34 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_words(const char *str, char c)
+static int	count_words( char *str, char c)
 {
 	int	i;
 	int	trigger;
@@ -33,7 +33,7 @@ static int	count_words(const char *str, char c)
 	return (i);
 }
 
-static char	*word_dup(const char *str, int start, int finish)
+static char	*word_dup( char *str, int start, int finish)
 {
 	char	*word;
 	int		i;
@@ -46,7 +46,7 @@ static char	*word_dup(const char *str, int start, int finish)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char  *s, char c)
 {
 	size_t	i;
 	size_t	j;

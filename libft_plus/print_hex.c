@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:00:49 by mmakagon          #+#    #+#             */
-/*   Updated: 2023/10/13 13:06:49 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/03/11 20:17:34 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	pf_hex_len(unsigned	int num)
 	return (len);
 }
 
-void	pf_put_hex(unsigned int num, const char format)
+void	pf_put_hex(unsigned int num,  char format)
 {
 	if (num >= 16)
 	{
@@ -46,7 +46,7 @@ void	pf_put_hex(unsigned int num, const char format)
 	}
 }
 
-int	pf_print_hex(va_list args, const char format)
+int	pf_print_hex(va_list args,  char format)
 {
 	unsigned int	num;
 
